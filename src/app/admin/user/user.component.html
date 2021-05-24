@@ -1,0 +1,41 @@
+<div class="portlet-grid-page" *ngIf="isUserValid"> 
+
+    <div class="portlet-grid panel-primary"> 
+        <div class="panel-heading">
+            <h3 class="panel-title">User Details</h3>
+        </div> 
+        <div class="panel-body">
+              <ul>
+                  <li>First Name : <strong> {{ userDetails.FName }}</strong></li>
+                  <li>Last Name : <strong> {{ userDetails.LName }}</strong></li>
+                  <li>Gender : <strong> {{ userDetails.Gender | GenderPipe }}</strong></li>
+                  <li>Email Address : <strong> {{ userDetails.Email }}</strong></li>
+                  <li>Pan card : <strong> {{ userDetails.PanCard }}</strong></li>
+                  <li>Aadhar Number : <strong> {{ userDetails.AadharNumber }}</strong></li>
+                  <li>Phone Number : <strong> {{ userDetails.PhoneNumber }}</strong></li>
+                  <li>Address : <strong> {{ userDetails.Address }}</strong></li>
+                  <li>City : <strong> {{ userDetails.City }}</strong></li>
+                  <li>State : <strong> {{ userDetails.State | StatePipe }}</strong></li>
+                  <li>Pin Code : <strong> {{ userDetails.Pincode }}</strong></li>
+                  <li>Registered On : <strong> {{ userDetails.RegisteredDate | date: 'fullDate' }}</strong></li>
+                  <li>User Status : <strong> {{ userDetails.IsActive ? "Active" : "Not Active" }}</strong></li>
+                  <li>Applied Accounts: 
+                    <ul>
+                        <li *ngFor="let atype of userDetails.AType"><strong *ngIf="atype.IsActive"> {{ atype.Types | AccountTypePipe }} </strong></li>
+                    </ul>
+                  </li>
+              </ul>
+              
+        </div> 
+        </div>
+
+        <div class="portlet-grid panel-success" style="width:60%" *ngIf="isUserValid">
+            <div class="panel-heading">
+                 <h3 class="panel-title">User Account Details</h3>
+             </div> 
+             <div class="panel-body">
+                  <app-adminuseraccount [UserDetails] = userDetails></app-adminuseraccount>
+             </div>
+        </div>
+
+    </div>  

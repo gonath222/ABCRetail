@@ -1,0 +1,25 @@
+<div class="page-container">
+  <div class="left-content">
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div class="mother-grid-inner">
+      <app-header></app-header>
+      <div class="inner-block">
+        <app-errorui [errorMessage]='errorMessage' *ngIf=errorMessage></app-errorui>
+        <app-successui [successMessage]='successMessage' *ngIf=successMessage></app-successui>
+        <div *ngIf="isUrlValid">
+          <div [@myAnimation]="o.isActivated ? o.activatedRoute : ''">
+            <router-outlet (activate)="ScrollTotop()" #o="outlet"></router-outlet>
+          </div>
+          <!-- <router-outlet (activate)="ScrollTotop()"></router-outlet> -->
+        </div>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+  <div class="sidebar-menu">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="clearfix"> </div>
+</div>

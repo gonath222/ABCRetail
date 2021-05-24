@@ -1,0 +1,78 @@
+<div class="work-progres">
+    <div class="chit-chat-heading">
+        Search All Transactions
+        <div *ngIf="transList.length >= 1" class="chit-chat-heading-right"><a
+                (click)="exporttoexcel('searchtransactions')"> <i class="fa fa-file-excel-o"
+                    style="font-size:24px"></i></a></div>
+    </div>
+    <div class="chit-chat-layer1">
+        <div class="col-md-12 chit-chat-layer1-left">
+            <div class="content">
+                <div class="form-row">
+                    <div class=" col-md-2 mb-3">
+                        <label for="">Transfer to Account Type</label>
+                        <select class="form-control" [(ngModel)]="transferto" aria-label="form-select">
+                            <option value="" selected>Account Type</option>
+                            <option value="dsa">Digital Savings Account</option>
+                            <option value="cc">Credit Card</option>
+                            <option value="pl">Personal Loan</option>
+                            <option value="carl">Car Loan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="">Transfered Date</label>
+                        <input type="date" id="fromdate" name="fromdate" class="form-control fromdate"
+                            [(ngModel)]="transferdatefrom" min="2017-12-29" max="2021-05-31" required useValueAsDate>
+                    </div>
+                    <div class="col-md-2 mb-3" style="padding-top: 30px;">
+                        <button class="btn btn-primary" (click)="onSearch()">Search</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="work-progres mt-3">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="searchtransactions">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>#</th>
+                                <th>Transaction Id</th>
+                                <th>Transfer to Account</th>
+                                <th>Transfer to Name</th>
+                                <th>Received from AC</th>
+                                <th>Received from Name</th>
+                                <th>Transfered Amount</th>
+                                <th>Transfered On <i (click)="onSortClick($event, 'transferedon')"
+                                        class="my-icon fa fa-chevron-up"></i></th>
+                                <th>Transaction Status</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="transList.length == 0">
+                            <tr>
+                                <td colspan="3">No Transactions</td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="transList.length > 0">
+                            <tr *ngFor="let trans of transList; let i = index">
+                                <td *ngIf="trans.TYPE =='OutGoing'" [ngClass]="{'sentBG' : trans.TYPE =='OutGoing'}" title="Outgoing Transactions"></td>
+                                <td *ngIf="trans.TYPE =='Incoming'" [ngClass]="{'receBG' : trans.TYPE =='Incoming'}" title="Incoming Transactions"></td>
+                                <td>{{ i+1 }}</td>
+                                <td>{{ trans.TransactionId }}</td>
+                                <td>{{ trans.ToAccountNumber}}</td>
+                                <td>{{ trans.ToUserName}}</td>
+                                <td>{{ trans.FromAccountNumber}}</td>
+                                <td>{{ trans.FromUserName}}</td>
+                                <td>{{ trans.TransferedAmount | AmountPipe}}</td>
+                                <td>{{ trans.TransferedOn | date: 'fullDate'}}</td>
+                                <td><span class="label label-success">Success</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

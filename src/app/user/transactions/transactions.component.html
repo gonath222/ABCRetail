@@ -1,0 +1,78 @@
+<div class="chit-chat-layer1">
+	<div class="col-md-12 chit-chat-layer1-left">
+               <div class="work-progres mt-3">
+                            <div class="chit-chat-heading">
+                                  Sent Transactions
+                                  <div *ngIf="sentList.length >= 1" class="chit-chat-heading-right"><a (click)="exporttoexcel('senttransactions')"> <i class="fa fa-file-excel-o" style="font-size:24px"></i></a></div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover senttable" id="senttransactions">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Transaction Id</th>
+                                      <th>Transfer to Account</th>                                   
+                                      <th>Transfer to Name</th>      
+                                      <th>Transfered Amount</th>
+                                      <th>Transfered On  <i (click)="onSortClick($event, 'transferedon', 'SENT')" class="my-icon fa fa-chevron-up"></i></th>
+                                      <th>Transaction Status</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngIf="sentList.length == 0">
+                                  <td>No transactions</td>
+                                </tr>
+                                <tr *ngFor="let sent of sentList; let i = index ">
+                                  <td>{{ i+1 }}</td>
+                                  <td>{{ sent.TransactionId }}</td>
+                                  <td>{{ sent.ToAccountNumber}}</td>    
+                                  <td>{{ sent.ToUserName}}</td>   
+                                  <td>{{ sent.TransferedAmount | AmountPipe}}</td>                                 
+                                  <td>{{ sent.TransferedOn | date: 'fullDate'}}</td> 
+                                  <td><span class="label label-success">Success</span></td>
+                              </tr>
+                            
+                          </tbody>
+                      </table>
+                  </div>
+             </div>
+
+             <div class="work-progres mt-3">
+                <div class="chit-chat-heading">
+                      Received Transactions
+                      <div  *ngIf="receList.length >= 1" class="chit-chat-heading-right"><a (click)="exporttoexcel('receivedtransactions')"> <i class="fa fa-file-excel-o" style="font-size:24px"></i></a></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover recetable" id="receivedtransactions">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Transaction Id</th>
+                          <th>Received from Account</th>                                   
+                          <th>Received from Name</th>      
+                          <th>Received Amount</th>
+                          <th>Received On <i (click)="onSortClick($event, 'transferedon', 'RECE')" class="my-icon fa fa-chevron-up"></i></th>
+                          <th>Transaction Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngIf="receList.length == 0">
+                      <td>No transactions</td>
+                    </tr>
+                    <tr *ngFor="let sent of receList; let i = index ">
+                      <td>{{ i+1 }}</td>
+                      <td>{{ sent.TransactionId }}</td>
+                      <td>{{ sent.FromAccountNumber}}</td>    
+                      <td>{{ sent.FromUserName}}</td>   
+                      <td>{{ sent.TransferedAmount | AmountPipe}}</td>                                 
+                      <td>{{ sent.TransferedOn | date: 'fullDate'}}</td> 
+                      <td><span class="label label-success">Success</span></td>
+                  </tr>
+                
+              </tbody>
+          </table>
+      </div>
+ </div>
+      </div>
+     <div class="clearfix"> </div>
+</div>

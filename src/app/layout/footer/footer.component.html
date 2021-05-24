@@ -1,0 +1,51 @@
+<div class="copyrights">
+  <div class="footer-29 py-5">
+    <div class="container py-lg-4">
+      <div class="row footer-top-29">
+        <div class="col-lg-4 col-md-6 footer-list-29 footer-1 pr-lg-5">
+          <div class="footer-logo mb-4">
+            <a class="navbar-brand">
+              <span class="fa fa-cc-visa"></span> Credit Card</a>
+          </div>
+          <p>It is the leading financial establishment providing high-quality international banking services. Our
+            success
+            is attributed to our loyal customers. We provide reliable services for you.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-5 col-5 footer-list-29 footer-2 mt-md-0 mt-5">
+
+          <ul  *ngIf="!isUserLoggedin && !isAdminLoggedin">
+            <h6 class="footer-title-29">Quick Links</h6>
+            <li><a routerLink="home">Home</a></li>
+            <li><a routerLink="login">Login</a></li>
+            <li><a routerLink="openaccount">Open Account</a></li>
+            <li><a routerLink="faq">FAQ</a></li>
+          </ul>
+          <ul *ngIf="isUserLoggedin">
+            <h6 class="footer-title-29">Quick Links</h6>
+            <li><a routerLink="/user/dashboard">Dashboard</a></li>
+            <li><a routerLink="/user/transactions">Transactions</a></li>
+            <li><a routerLink="/user/fundtransfer">Transfer Funds</a></li>
+            <li><a routerLink="/user/fundtransfer" [queryParams]="{ pay: 'cc'}">Pay to Credit Card</a></li>
+            <li><a routerLink="/user/fundtransfer" [queryParams]="{ pay: 'pl'}">Pay to Loan</a></li>
+          </ul>
+          <ul  *ngIf="isAdminLoggedin">
+            <h6 class="footer-title-29">Quick Links</h6>
+            <li><a routerLink="/admin/dashboard">Dashboard</a></li>
+            <li><a routerLink="/admin/user/recentlist">Recent User List</a></li>
+            <li><a routerLink="/admin/user/activelist">Active User List</a></li>
+            <li><a routerLink="/admin/user/search">Search User</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-7 col-7 footer-list-29 footer-3 mt-lg-0 mt-5">
+          <h6 class="footer-title-29">Head Office</h6>
+          <p class="mb-3"> Bank Card, 343 banking lane, #2214 cravel street, NY.</p>
+          <p class="mb-2"> <span class="fa fa-phone"></span> <a>+1(21) 234 4567</a></p>
+          <p class="mb-2"><span class="fa fa-envelope-o"></span> <a >admin@abcretailbank.com</a></p>
+          <p><span class="fa fa-support"></span> <a>info@abcretailbank.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <p>© 2021 ABC Retail Bank LTD. All Rights Reserved </p>
+  </div>

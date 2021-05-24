@@ -1,0 +1,18 @@
+[
+    {
+        "code": "dsa",
+        "name": "Digital Saving Account"
+    },
+    {
+        "code": "pl",
+        "name": "Personal Loan"
+    },
+    {
+        "code": "cc",
+        "name": "Credit Card"
+    },
+    {
+        "code": "carl",
+        "name": "Car Loan"
+    }
+]

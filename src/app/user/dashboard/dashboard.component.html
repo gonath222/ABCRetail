@@ -1,0 +1,58 @@
+<div class="alert alert-danger alert-dismissable" *ngIf="!isUserActive">
+    You are not a active user. Once admin approves your request you can access your dashboard.
+</div>
+
+<div class="d-flex flex-row my-flex-container" *ngIf="isUserActive">
+    <div class="col-md-4 p-2 my-flex-item">
+        <div class="market-update-gd">
+            <div class="d-flex market-update-block clr-block-1">
+                <div class="col-md-8 market-update-left">
+                    <h3>{{ TotalSavingsAsset | AmountPipe }} INR </h3>
+                    <h4>Saving Account </h4>
+                     <p *ngIf="NoSavingAccount.length > 1">Account Number :<br/> {{ NoSavingAccount }}</p>
+                    <p *ngIf="NoSavingAccount.length == 1"><a (click)="ApplyAccount('dsa')" style='color:white'>Need
+                            Savings account. Apply Now</a></p>
+                </div>
+                <div class="col-md-4 market-update-right mt-22">
+                    <span class="savingBg"></span>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 p-2 my-flex-item">
+        <div class="market-update-gd">
+            <div class="d-flex market-update-block clr-block-2">
+                <div class="col-md-8 market-update-left">
+                    <h3>{{ TotalPLAsset | AmountPipe }} INR </h3>
+                    <h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Personal Loan & Car Loan </h4>
+                    <p *ngIf="NoPLAccount.length > 1">Account Number :<br/> {{ NoPLAccount }}</p>
+                    <p *ngIf="NoPLAccount.length == 1"><a (click)="ApplyAccount('pl')" style='color:white'>Need a
+                            loan. Apply Now</a></p>
+                </div>
+                <div class="col-md-4 market-update-right mt-22">
+                    <span class="plIcon"></span>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 p-2 my-flex-item">
+        <div class="market-update-gd">
+            <div class="d-flex market-update-block clr-block-3">
+                <div class="col-md-8 market-update-left">
+                    <h3>{{ TotalCCAsset | AmountPipe }} INR </h3>
+                    <h4>Credit Card </h4>
+                    <p *ngIf="NoCCAccount.length > 1">Credit Card Number:<br/> {{ NoCCAccount }}</p>
+                    <p *ngIf="NoCCAccount.length == 1"><a (click)="ApplyAccount('cc')" style='color:white'>Need
+                            a Credit Card. Apply Now</a></p>
+                </div>
+                <div class="col-md-4 market-update-right mt-22">
+                    <span class="ccBg"></span>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-Usertransactions *ngIf="isUserActive"></app-Usertransactions>

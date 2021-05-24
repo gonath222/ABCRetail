@@ -1,0 +1,105 @@
+<div class="work-progres">
+    <div class="chit-chat-heading">
+        Search User
+        <div *ngIf='userdetails.length >= 1' class="chit-chat-heading-right"><a (click)="exporttoexcel('searchuser')"> <i class="fa fa-file-excel-o" style="font-size:24px"></i></a></div>
+    </div>
+    <div class="content">
+        <div class="form-row">
+            <div class="col-md-2 mb-2">
+                <label for="">First name</label>
+                <input type="text" class="form-control" [(ngModel)]="fname" placeholder="Search By First Name">
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="">Last name</label>
+                <input type="text" class="form-control" [(ngModel)]="lname" placeholder="Search By Last Name">
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="">Email ID</label>
+                <input type="text" class="form-control" [(ngModel)]="email" placeholder="Search By Email Address">
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="">Gender</label>
+                <select class="form-control"  [(ngModel)]="gender" aria-label="form-select" style="width:200px">
+                    <option value="" selected>Select Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="">Aadhar</label>
+                <input type="text" class="form-control" [(ngModel)]="aadhar" [OnlyNumber]="true"
+                    placeholder="Search By Aadhar">
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="">PanCard</label>
+                <input type="text" class="form-control" [(ngModel)]="pancard" placeholder="Search By PanCard">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class=" col-md-2 mb-3">
+                <label for="">Account Type</label>
+                <select class="form-control" [(ngModel)]="accountType" aria-label="form-select">
+                    <option value="" selected>Account Type</option>
+                    <option value="dsa">Digital Savings Account</option>
+                    <option value="cc">Credit Card</option>
+                    <option value="pl">Personal Loan</option>
+                    <option value="carl">Car Loan</option>
+                </select>
+            </div>
+            <div class="col-md-2 mb-3">
+
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="col-md-12 mb-3" style="padding-top: 20px;">
+                <button class="btn btn-primary" (click)="onSearch()">Search</button>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="table-responsive" id="searchuser">
+        <table class="table table-hover" style="text-align: left;">
+            <thead>
+                <tr>
+                    <th>FirstName <i (click)="onSortClick($event, 'fname')" class="my-icon fa fa-chevron-up"></i></th>
+                    <th>LastName<i (click)="onSortClick($event,'lname')" class="my-icon fa fa-chevron-up"></i></th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Aadhar</th>
+                    <th>PanCard</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>PinCode</th>
+                    <th>Registered On <i (click)="onSortClick($event, 'registeredon')" class="my-icon fa fa-chevron-up"></i></th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf='userdetails.length == 0'>
+                    <td colspan="2">No criteria matched</td>
+                </tr>
+                <tr *ngFor="let user of userdetails" (click)="RouteToUserDetails(user.ID)">
+                    <td> {{user.FName}} </td>
+                    <td>{{user.LName}}</td>
+                    <td>{{user.Email}}</td>
+                    <td>{{user.Gender | GenderPipe}}</td>
+                    <td>{{user.AadharNumber}}</td>
+                    <td>{{user.PanCard}}</td>
+                    <td>{{user.PhoneNumber}}</td>
+                    <td>{{user.Address}}</td>
+                    <td>{{user.City}}</td>
+                    <td>{{user.State | StatePipe }}</td>
+                    <td>{{user.Pincode}}</td>
+                    <td>{{user.RegisteredDate | date: 'fullDate' }}</td>
+                    <td *ngIf="!user.IsActive"><a routerLink="/admin/user/{{ user.ID }}" class="label label-warning">Not
+                            Active</a></td>
+                    <td *ngIf="user.IsActive"><a routerLink="/admin/user/{{ user.ID }}"
+                            class="label label-success">Active</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

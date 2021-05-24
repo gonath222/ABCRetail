@@ -1,0 +1,72 @@
+<div class="d-flex flex-row my-flex-container">
+    <div class="col-md-4 p-2 my-flex-item">
+		<div class="market-update-gd">
+			<a routerLink="../user/search" [queryParams]="{ accountype: 'dsa'}">
+				<div class="d-flex market-update-block clr-block-1">
+					<div class="col-md-8 market-update-left">
+						<h3>{{ TotalSavingsAsset | AmountPipe}} INR </h3>
+						<h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Total Saving Account Asset </h4>
+						<p>No of Savings Accounts : {{ NoSavingAccount }}</p>
+					</div>
+					<div class="col-md-4 market-update-right mt-22">
+						<span class="savingBg"></span>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-4 p-2 my-flex-item">
+		<div class="market-update-gd">
+			<a routerLink="../user/search" [queryParams]="{ accountype: 'pl'}">
+			<div class="d-flex market-update-block clr-block-2">
+				<div class="col-md-8 market-update-left">
+					<h3>{{ TotalPLAsset  | AmountPipe}} INR </h3>
+					<h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Total Personal/Car Loan Asset </h4>
+					<p>No of Loan Accounts : {{ NoPLAccount }}</p>
+				</div>
+				<div class="col-md-4 market-update-right mt-22">
+					<span class="plIcon"></span>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-4 p-2 my-flex-item">
+		<div class="market-update-gd">
+			<a routerLink="../user/search" [queryParams]="{ accountype: 'cc'}">
+			<div class="d-flex market-update-block clr-block-3">
+				<div class="col-md-8 market-update-left">
+					<h3>{{ TotalCCAsset  | AmountPipe}} INR </h3>
+					<h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Total Credit Card Asset </h4>
+					<p>No of Credit Card Accounts : {{ NoCCAccount }}</p>
+				</div>
+				<div class="col-md-4 market-update-right mt-22">
+					<span class="ccBg"></span>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</a>
+		</div>
+	</div>
+</div>
+
+
+<div class="d-flex chit-chat-layer1">
+	<div class="col-md-6 chit-chat-layer1-left mt-3">
+		<app-adminuserlist></app-adminuserlist>
+	</div>
+	<div class="col-md-6 chit-chat-layer1-rit mt-3">
+		<app-activeuser></app-activeuser>
+	</div>
+	<div class="clearfix"> </div>
+</div>
+
+<div class="d-flex chit-chat-layer1">
+	<div class="col-md-6 chit-chat-layer1-left mt-3">
+		<app-userrequest></app-userrequest>
+	</div>
+
+	<div class="clearfix"> </div>
+</div>

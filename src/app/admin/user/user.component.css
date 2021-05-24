@@ -1,0 +1,6 @@
+.panel-body ul{
+    list-style: none;
+    text-align: left;
+    padding-left: 0px;
+    line-height: 2em;
+}

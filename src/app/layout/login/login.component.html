@@ -1,0 +1,21 @@
+<div class="login-main">  	
+    <div class="login-head">
+           <h1>Login</h1>
+       </div>			
+       <div class="login-block">
+           <form>
+               <input type="text" name="email" [(ngModel)]="email" placeholder="Email" required="">
+               <input type="password" name="password"  [(ngModel)]="password" class="lock" placeholder="Password">
+               <div class="forgot-top-grids">
+                   <div class="clearfix"> </div>
+               </div>
+
+              <button class="btn btn-primary" type="button" (click)="OnLoginSubmit()" style="width:100%">
+                <span *ngIf="!isLoading"></span> <span *ngIf="!isLoading">Login</span>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span><span *ngIf="isLoading"> Logging in...</span>
+            </button>
+               <h3>Dont have an account?<a routerLink="/openaccount" [queryParams]="{ open: 'dsa'}"> Open Saving account now</a></h3>				
+           </form>
+           <h5><a routerLink="/home">Go Back to Home</a></h5>
+       </div>
+ </div>

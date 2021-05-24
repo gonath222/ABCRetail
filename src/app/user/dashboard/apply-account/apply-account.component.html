@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h4 class="modal-title" [ngSwitch]="type">Apply New
+        <span *ngSwitchCase="'dsa'">Saving Account</span>
+        <span *ngSwitchCase="'cc'">Credit Card</span>
+        <span *ngSwitchCase="'pl'">Loan</span>
+    </h4>
+    <span (click)="activeModal.dismiss('Cross click')" style="font-size: 23px;cursor: pointer;"
+        aria-hidden="true">&times;</span>
+</div>
+<div class="modal-body">
+    <div class="card lesson-border">
+        <div class="card-body">
+            <div class="login-block" style="padding:0;">
+                <div class="alert alert-success alert-dismissable" *ngIf="isSuccess && !isFailure">
+                    Successfully Applied. Our representative will check and update.
+                </div>
+                <div class="alert alert-danger alert-dismissable" *ngIf="isFailure && !isSuccess">
+                    Enter the value and then submit.
+                </div>
+                <form>
+                    <select class="form-control" *ngIf="type !== 'cc' && type !== 'dsa'" [(ngModel)]="atype"
+                        name="atype" aria-label="form-select">
+                        <option value="-1" selected>Account Type</option>
+                        <option value="pl">Personal Loan</option>
+                        <option value="carl">Car Loan </option>
+                    </select>
+                    <input class="form-control" type="text" maxlength="11" [OnlyNumber]="true" [(ngModel)]="loanamount"
+                        name="loanamount" placeholder="Enter the amount you need" required="">
+                    <div class="forgot-top-grids">
+                        <div class="forgot-grid">
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <button class="btn btn-primary" type="button" (click)="OnSubmit()" style="width:100%">
+                        <span>Open Account</span>
+                    </button>
+                </form>
+                <h5><a (click)="activeModal.dismiss('Cross click')">Will Apply Later...</a></h5>
+            </div>
+        </div>
+    </div>
+</div>

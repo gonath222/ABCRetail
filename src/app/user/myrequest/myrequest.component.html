@@ -1,0 +1,35 @@
+<div class="work-progres">
+    <div class="chit-chat-heading">
+      My Requests
+      <div *ngIf='allUserRequest.length >= 1' class="chit-chat-heading-right"><a (click)="exporttoexcel('myrequests')"> <i class="fa fa-file-excel-o" style="font-size:24px"></i></a></div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover" id="myrequests">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount Request</th>
+            <th>Applied For</th>
+            <th>Requested On</th>
+            <th>Approved On</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf='allUserRequest.length == 0'>
+            <td colspan="2">No New Request registered</td>
+          </tr>
+          <tr *ngFor="let req of allUserRequest">
+            <td> {{req.UserName}} </td>
+            <td>{{req.Amount | AmountPipe}}</td>
+            <td>{{req.AppliedFor | AccountTypePipe}}</td>
+            <td>{{req.RequestedOn | date: 'fullDate'}}</td>
+            <td *ngIf="req.ApprovedOn != undefined">{{req.ApprovedOn | date: 'fullDate'}}</td>
+            <td *ngIf="req.ApprovedOn == undefined">---</td>
+            <td *ngIf="req.IsActive"><span class="label label-warning">Pending</span></td>
+            <td *ngIf="!req.IsActive"><span class="label label-success">Approved</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

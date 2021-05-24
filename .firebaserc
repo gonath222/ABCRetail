@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "abc-retail-banking": {
+      "hosting": {
+        "ABCRetail": [
+          "abc-retail-banking"
+        ]
+      }
+    }
+  }
+}

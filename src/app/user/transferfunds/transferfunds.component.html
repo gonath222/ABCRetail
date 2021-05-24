@@ -1,0 +1,63 @@
+<div class="login-main">
+    <div class="login-head">
+        <h1 *ngIf="billPay == 'cc'">Transfer Funds to your Credit Card outstanding</h1>
+        <h1 *ngIf="billPay == 'pl'">Transfer Funds to your Personal/Car loan outstanding</h1>
+        <h1 *ngIf="billPay == undefined">Transfer Funds to Another Accounts</h1>
+    </div>
+    <div class="login-block">
+        <form>
+            <ul class="transferul">
+                <li>Your Savings Account Balance : <strong>{{BalanceAmount}}</strong></li>
+            </ul>
+
+            <input type="text" name="tamount" [(ngModel)]="tamount" placeholder="Transfer Amount" required="">
+            <div *ngIf="billPay == undefined">
+                <select class="form-select" aria-label="form-select" #accountDrop
+                    (change)="AccountSelectionChanged(accountDrop.value)">
+                    <option value="" selected>Select The Account</option>
+                    <option *ngFor="let user of userDetails" value="{{user.UserId}}">{{ user.FName }} {{ user.LName }}
+                    </option>
+                </select>
+                <ul class="transferul" *ngIf="selectedUser">
+                    <li>First Name : <strong>{{selectedUser.FName }} </strong></li>
+                    <li>Last Name : <strong>{{selectedUser.LName }} </strong></li>
+                    <li>Account Number: <strong>{{ NoSavingAccount }}</strong></li>
+                </ul>
+            </div>
+
+            <div *ngIf="billPay == 'cc'">
+                <ul class="transferul" *ngIf="isAccountLoaded">
+                    <li>Credit card Number : <strong>{{accountDetails.AccountNumber }} </strong></li>
+                    <li>Credit card Outstanding : <strong>{{accountDetails.AccountValue }} </strong></li>
+                </ul>
+                <ul *ngIf="!isAccountLoaded">
+                    <li>You dont have any outstanding or have credit card account to pay the amount</li>
+                </ul>
+            </div>
+
+            <div *ngIf="billPay == 'pl'">
+                <select class="form-select" aria-label="form-select" #accountLoan
+                    (change)="LoanSelectionChanged(accountLoan.value)">
+                    <option value="" selected>Select The Account</option>
+                    <option value="pl">Personal Loan</option>
+                    <option value="carl">Car Loan</option>
+                </select>
+                <ul class="transferul" *ngIf="isAccountLoaded">
+                    <li>Personal Loan Account Number : <strong>{{accountDetails.AccountNumber }} </strong></li>
+                    <li>Personal Loan Outstanding : <strong>{{accountDetails.AccountValue }} </strong></li>
+                </ul>
+                <ul *ngIf="!isAccountLoaded">
+                    <li>You dont have any outstanding/ have personal loan account to pay the amount</li>
+                </ul>
+            </div>
+
+            <div class="forgot-top-grids">
+                <div class="forgot-grid">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <input type="submit" name="Transfer Fund" value="Transfer Fund" [ngClass]="{'disabled' : (billPay !=undefined && !isAccountLoaded) || BalanceAmount == '0' || BalanceAmount == ''}" (click)="OnSubmit()">
+        </form>
+        <h5><a (click)="CancelTransaction()" style="cursor: pointer;">Cancel Transaction</a></h5>
+    </div>
+</div>
